@@ -1,0 +1,24 @@
+{
+  "name": "flashcard-generator",
+  "version": "1.0.0",
+  "description": "Simple flash card app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ro04/flashcard-generator.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "*"
+  },
+  "author": "L. Rochelle Beal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ro04/glashcard-generator/issues"
+  },
+  "homepage": "https://github.com/ro04/flashcard-generator#readme"
+}

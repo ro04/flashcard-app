@@ -1,0 +1,210 @@
+ <!--Button-->
+<div class="row">
+    <div class="col-xs-offset-3 col-xs-6 col-xs-offset-3">
+        <input id="btnStart" type="button" class="btn btn-danger btn-block" value="CLICK HERE TO TAKE THE FLASHCARD QUIZ"/>
+        <input id="btnBasic" type="button" class="btn btn-danger btn-block" value="BASIC CARDS"/>
+        <input id="btnCloze" type="button" class="btn btn-danger btn-block" value="CLOZE CARDS"/>
+        <input id="btnStop" type="button" class="btn btn-danger btn-block" value="STOP QUESTIONS"/>
+    </div>
+</div> <!-- end row -->
+
+<!--Panel for flash Card-->
+<div class="row"
+    <div class="col-sm-offset-3 col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p id="front-card"></p>
+                <p id="back-card"></p>
+                <div class="rou">
+                    <div class="col-xs-offset-3 col-xs-6 col-xs-offset-3">
+                        <input id="btnAnswerBasic" type="button" class="btn btn-primary btn-block" value="FLIP OVER"/>
+                        <input id="btnAnswerCloze" type="button" class="btn btn-primary btn-block" value="FLIP OVER"/>
+                        <input id="btnNextBasic" type="button" class="btn btn-success btn-block" value="NEXT QUESTION"/>
+                        <input id="btnNextCloze" type="button" class="btn btn-success btn-block" value="NEXT QUESTION"/>     
+                    </div>
+                </div>
+            </div> <!-- end panel-body -->
+        </div> <!-- end panel -->
+    </div>
+</div>  <!-- end row -->    
+
+<script>
+$(document).ready( function() {
+    var num = 0;
+    
+    //Receive GET request 
+    var myFrontObj = '<%= frontClickHandler %>';  //>Basic Card front
+    var myBackObj = '<%= backClickHandler %>';    //>Basic Card Back
+    var myFrontObjCloze = '<%= frontClickHandlerCloze %>'; //>Cloze Card front
+    
+    //Convert the Get request string objs into Arrays//
+    var frontCard = myFrontObj.split(",");
+    var backCard = myBackObj.split(",");
+    var frontCardCloze = myFrontObjCloze.split(",");
+
+    //Hide the panel and the buttons for choosing Basic card, Close card, Next Question and Stop Buttons
+    $(".container .panel").addClass('hidden');
+    $("#btnBasic").addClass('hidden');
+    $("#btnCloze").addClass('hidden');
+    $("#btnNextBasic").addClass('hidden');
+    $("#btnNextCloze").addClass('hidden');
+    $("#btnAnswerBasic").addClass('hidden');
+    $("#btnAnswerCloze").addClass('hidden');
+    $("#btnStop").addClass('hidden');
+
+    //generate Basic card question
+    var generateQuestion = function(num) {
+         return frontCard[num];
+    };
+
+    //generate Cloze card question
+    var generateQuestionCloze = function(num) {
+        return frontCardCloze[num];
+    };
+
+    //generate card answer, answer is the same for both cards
+    var generateAnswer = function(num) {
+        return backCard[num];
+    };
+    
+    //After pressing the start button
+    $("#btnStart").on("click", function(e){
+        //hide the btnStart
+        $("#btnStart").addClass('hidden');
+        //Show btnBasic
+        $("#btnBasic").removeClass('hidden');
+        //Show BtnCloze
+        $("#btnCloze").removeClass('hidden');      
+    });
+
+    //After Clicking Basic Btn
+     $("#btnBasic").on("click", function(e){
+        e.preventDefault();
+        //Show Stop Button
+        $("#btnStop").removeClass('hidden');
+        //Hide btnBasic
+        $("#btnBasic").addClass('hidden');
+        //Hide btnCloze
+        $("#btnCloze").addClass('hidden');
+        //Show the panel 
+        $(".container .panel").removeClass('hidden');
+        //generate the question for Basic card
+        generateQuestion(num);
+        //remove the answer 
+        $("#back-card").empty();
+        //display question on card
+        $("#front-card").html(frontCard[num]);
+        //show btnAnswer for Basic Card
+        $("#btnAnswerBasic").removeClass('hidden');
+     });
+
+     //If the Flop Over Button for the Basic card is pressed
+    $('#btnAnswerBasic').on("click", function(e){
+        e.preventDefault();
+        //hide btnAnswer
+        $("#btnAnswerBasic").addClass('hidden');
+        //remove question
+        $("#front-card").empty();
+        //generate the answer
+        generateQuestion(num);
+        //shows the answer
+        $("#back-card").html(backCard[num]);
+        //Show BtnNext
+        $("#btnNextBasic").removeClass('hidden');
+        num++;
+    });
+
+    //if the Next Button for Basic card is click
+    $("#btnNextBasic").on("click", function(e){
+        e.preventDefault();
+        //generate the question
+        generateAnswer(num);
+        //remove the answer 
+        $("#back-card").empty();
+        //display the next question
+        $("#front-card").html(frontCard[num]);
+        //Hide btnNext
+        $("#btnNextBasic").addClass('hidden');
+        //show btnAnswer
+        $("#btnAnswerBasic").removeClass('hidden');
+     });
+
+     //After clicking Cloze Btn
+     $("#btnCloze").on("click", function(e){
+        e.preventDefault();
+        //Show Stop Button
+        $("#btnStop").removeClass('hidden');
+        //Hide btnBasic
+        $("#btnBasic").addClass('hidden');
+        //Hide btnCloze
+        $("#btnCloze").addClass('hidden');
+        //Show the panel 
+        $(".container .panel").removeClass('hidden');
+        //generate the question for Cloze card
+        generateQuestionCloze(num);
+        //remove the answer 
+        $("#back-card").empty();
+        //display question on card
+        $("#front-card").html(frontCardCloze[num]);
+        //show btnAnswer for Cloze card
+        $("#btnAnswerCloze").removeClass('hidden');
+     });
+
+     //If the Flop Over Button for the Cloze card is pressed
+    $('#btnAnswerCloze').on("click", function(e){
+        e.preventDefault();
+        //hide btnAnswer
+        $("#btnAnswerCloze").addClass('hidden');
+        //remove question
+        $("#front-card").empty();
+        //generate the answer
+        generateQuestionCloze(num);
+        //shows the answer
+        $("#back-card").html(backCard[num]);
+        //Show BtnNext
+        $("#btnNextCloze").removeClass('hidden');
+        num++;
+    });
+
+    //if the Next Button for Cloze card is click
+    $("#btnNextCloze").on("click", function(e){
+        e.preventDefault();
+        //generate the question
+        generateAnswer(num);
+        //remove the answer 
+        $("#back-card").empty();
+        //display the next question
+        $("#front-card").html(frontCardCloze[num]);
+        //Hide btnNext
+        $("#btnNextCloze").addClass('hidden');
+        //show btnAnswer
+        $("#btnAnswerCloze").removeClass('hidden');
+     });
+
+     //If stop game is pressed
+     $("#btnStop").on("click", function(e){
+        e.preventDefault();
+        //Hide panel
+        $(".container .panel").addClass('hidden');
+        //hide btnStop
+        $("#btnStop").addClass('hidden');
+        //Show btnStart
+        $("#btnStart").removeClass('hidden');
+        //hide btnBasic
+        $("#btnBasic").addClass('hidden');
+        //hide btnCloze
+        $("#btnCloze").addClass('hidden');
+        //hide btnAnswerBasic
+        $("#btnAnswerBasic").addClass('hidden');
+        //hide btnAnserCloze
+        $("#btnAnswerCloze").addClass('hidden');
+        //hide btnNextBasic
+        $("#btnNextBasic").addClass('hidden');
+        //hide btnNextCloze
+        $("#btnNextCloze").addClass('hidden');
+        num = 0;
+     });
+
+}); // end ready
+
+</script>

@@ -1,0 +1,130 @@
+body {
+  background: url("../images/american-flag.jpg");
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 34px;
+  color: #777;
+ }
+
+ /* Wells Title */
+.well {
+	font-size: 28px;
+	text-align: center;
+	font-family: 'Bree Serif', serif;
+	color:  #666666;
+}
+
+/* Panel */
+.container .panel {
+     position: relative;
+     background-color: #fff;
+     margin-top: 100px;
+     height: 250px;
+} 
+
+.container .panel .hidden {
+  visibility: hidden;
+}
+
+/* Buttons */
+#btnStart {
+     margin-top: 100px;
+     font-size: 16px;
+     font-family: 'Poppins', sans-serif;
+}
+
+#btnBasic{
+  margin-top: 100px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#btnCloze{
+  margin-top: 50px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#btnAnswerBasic{
+  position: absolute;
+  margin-top: -25px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#btnAnswerCloze{
+  position: absolute;
+  margin-top: -25px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#btnNextBasic{
+  position: absolute;
+  margin-top: 25px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#btnNextCloze{
+  position: absolute;
+  margin-top: 25px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#btnStop{
+  position: absolute;
+  top: 380px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#btnStart .hidden {
+  visibility: hidden;
+}
+
+#btnBasic .hidden {
+  visibility: hidden;
+}
+
+#btnCloze .hidden {
+  visibility: hidden;
+}
+
+#btnNextBasic .hidden {
+  visibility: hidden;
+}
+
+#btnNextCloze .hidden {
+  visibility: hidden;
+}
+
+#btnAnswerBasic .hidden {
+  visibility: hidden;
+}
+
+#btnAnswerCloze .hidden {
+  visibility: hidden;
+}
+
+#btnStop .hidden {
+  visibility: hidden;
+}
+
+/* Front text and back text of flashcard */
+#front-card {
+  margin-top: 75px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#back-card {
+  margin-top: 75px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+}
