@@ -1,4 +1,4 @@
-# flashcard-generator
+# flashcard-app/node-express
 
 
 Created the backend for a basic flashcard application. The backend essentially constitutes an API that allows for the creation of two types of flashcards.
