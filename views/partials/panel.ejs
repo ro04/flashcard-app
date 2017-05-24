@@ -1,4 +1,4 @@
- <!--Button-->
+<!--Button-->
 <div class="row">
     <div class="col-xs-offset-3 col-xs-6 col-xs-offset-3">
         <input id="btnStart" type="button" class="btn btn-danger btn-block" value="CLICK HERE TO TAKE THE FLASHCARD QUIZ"/>
@@ -36,11 +36,13 @@ $(document).ready( function() {
     var myFrontObj = '<%= frontClickHandler %>';  //>Basic Card front
     var myBackObj = '<%= backClickHandler %>';    //>Basic Card Back
     var myFrontObjCloze = '<%= frontClickHandlerCloze %>'; //>Cloze Card front
+    var mybackObjCloze = '<%= backClickHandlerCloze %>'; //>Cloze Card back
     
     //Convert the Get request string objs into Arrays//
     var frontCard = myFrontObj.split(",");
     var backCard = myBackObj.split(",");
     var frontCardCloze = myFrontObjCloze.split(",");
+    var backCardCloze = mybackObjCloze.split(",");
 
     //Hide the panel and the buttons for choosing Basic card, Close card, Next Question and Stop Buttons
     $(".container .panel").addClass('hidden');
@@ -57,13 +59,18 @@ $(document).ready( function() {
          return frontCard[num];
     };
 
+    //generate Basic card answer
+    var generateAnswer = function(num) {
+        return backCard[num];
+    };
+    
     //generate Cloze card question
     var generateQuestionCloze = function(num) {
         return frontCardCloze[num];
     };
 
-    //generate card answer, answer is the same for both cards
-    var generateAnswer = function(num) {
+    //generate Cloze card answer
+    var generateAnswerCloze = function(num) {
         return backCard[num];
     };
     
@@ -160,7 +167,7 @@ $(document).ready( function() {
         //generate the answer
         generateQuestionCloze(num);
         //shows the answer
-        $("#back-card").html(backCard[num]);
+        $("#back-card").html(backCardCloze[num]);
         //Show BtnNext
         $("#btnNextCloze").removeClass('hidden');
         num++;
@@ -170,7 +177,7 @@ $(document).ready( function() {
     $("#btnNextCloze").on("click", function(e){
         e.preventDefault();
         //generate the question
-        generateAnswer(num);
+        generateAnswerCloze(num);
         //remove the answer 
         $("#back-card").empty();
         //display the next question
@@ -207,4 +214,4 @@ $(document).ready( function() {
 
 }); // end ready
 
-</script>
+</script> 
