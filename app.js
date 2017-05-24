@@ -22,7 +22,8 @@ app.get('/', function(req, res) {
     res.render('index', {
         frontClickHandler: BasicCard.displayFront(),
         backClickHandler: BasicCard.displayBack(),
-        frontClickHandlerCloze: ClozeCard.displayText()
+        frontClickHandlerCloze: ClozeCard.displayText(),
+        backClickHandlerCloze: ClozeCard.displayCloze()
    });
  });
 
@@ -103,37 +104,48 @@ BasicCard.displayBack = function() {
 
 //******************* CLOZE CARD *******************/
 var frontSideCloze = [];
+var backSideCloze = [];
 
 ClozeCard = [
     {
-        text: ClozeCard.firstPresidentCloze.partialText()
+        text: ClozeCard.firstPresidentCloze.partialText(),
+        cloze: ClozeCard.firstPresidentCloze.fullText()
     },
     {
-        text: ClozeCard.longestTermCloze.partialText()
+        text: ClozeCard.longestTermCloze.partialText(),
+        cloze: ClozeCard.longestTermCloze.fullText()
     },
     {
-        text: ClozeCard.nonConsecutiveTermsCloze.partialText()
+        text: ClozeCard.nonConsecutiveTermsCloze.partialText(),
+        cloze: ClozeCard.nonConsecutiveTermsCloze.fullText()
     },
     {
-        text: ClozeCard.youngestPresidentCloze.partialText()
+        text: ClozeCard.youngestPresidentCloze.partialText(),
+        cloze: ClozeCard.youngestPresidentCloze.fullText()
     },
     {
-        text: ClozeCard.whiteHouseCloze.partialText()
+        text: ClozeCard.whiteHouseCloze.partialText(),
+        cloze: ClozeCard.whiteHouseCloze.fullText()
     },
     {
-        text: ClozeCard.usBornCloze.partialText()
+        text: ClozeCard.usBornCloze.partialText(),
+        cloze: ClozeCard.usBornCloze.fullText()
     },
     {
-        text: ClozeCard.patentPresidentCloze.partialText()
+        text: ClozeCard.patentPresidentCloze.partialText(),
+        cloze: ClozeCard.patentPresidentCloze.fullText()
     },
     {
-        text: ClozeCard.divorcedPresidentCloze.partialText()
+        text: ClozeCard.divorcedPresidentCloze.partialText(),
+        cloze: ClozeCard.divorcedPresidentCloze.fullText()
     },
     {
-        text: ClozeCard.pressPresidentCloze.partialText()
+        text: ClozeCard.pressPresidentCloze.partialText(),
+        cloze: ClozeCard.pressPresidentCloze.fullText()
     },
     {
-        text: ClozeCard.unaffiliatedPresidentCloze.partialText()
+        text: ClozeCard.unaffiliatedPresidentCloze.partialText(),
+        cloze: ClozeCard.unaffiliatedPresidentCloze.fullText()
     }
 ];
 
@@ -147,3 +159,9 @@ ClozeCard.displayText = function() {
     return frontSideCloze;
 };
 
+ClozeCard.displayCloze = function() {
+    for(var i = 0; i < this.length; i++) {
+        backSideCloze.push(this[i].cloze);
+    };
+    return backSideCloze;
+};
