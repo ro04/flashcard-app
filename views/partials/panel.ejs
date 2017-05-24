@@ -83,9 +83,19 @@ $(document).ready( function() {
 
     //generate Basic card answer
     var generateAnswer = function(num) {
-        if(num < 10){
+        if(num < backCard.length){
             return backCard[num];
         }else{
+            //remove the answer 
+            $("#back-card").empty();
+            //hide btnNext
+            $("#btnNext").addClass('hidden');
+            //Hide panel
+            $(".container .panel").addClass('hidden');
+            //hide btnStop
+            $("#btnStop").addClass('hidden');
+            //Show btnStart
+            $("#btnStart").removeClass('hidden');
             num = 0;
         }
     };
@@ -97,9 +107,19 @@ $(document).ready( function() {
 
     //generate Cloze card answer
     var generateAnswerCloze = function(num) {
-        if(num < 10) {
-             return backCard[num];
+        if(num < backCardCloze.length) {
+             return backCardCloze[num];
         }else{
+            //remove the answer 
+            $("#back-card").empty();
+            //hide btnNextCloze
+            $("#btnNextCloze").addClass('hidden');
+            //Hide panel
+            $(".container .panel").addClass('hidden');
+            //hide btnStop
+            $("#btnStop").addClass('hidden');
+            //Show btnStart
+            $("#btnStart").removeClass('hidden');
             num = 0;
         }
     };
