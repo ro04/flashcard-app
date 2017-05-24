@@ -1,4 +1,4 @@
-<!--Button-->
+ <!--Button-->
 <div class="row">
     <div class="col-xs-offset-3 col-xs-6 col-xs-offset-3">
         <input id="btnStart" type="button" class="btn btn-danger btn-block" value="CLICK HERE TO TAKE THE FLASHCARD QUIZ"/>
@@ -54,14 +54,40 @@ $(document).ready( function() {
     $("#btnAnswerCloze").addClass('hidden');
     $("#btnStop").addClass('hidden');
 
+    var stopGame = function() {
+        //Hide panel
+        $(".container .panel").addClass('hidden');
+        //hide btnStop
+        $("#btnStop").addClass('hidden');
+        //Show btnStart
+        $("#btnStart").removeClass('hidden');
+        //hide btnBasic
+        $("#btnBasic").addClass('hidden');
+        //hide btnCloze
+        $("#btnCloze").addClass('hidden');
+        //hide btnAnswerBasic
+        $("#btnAnswerBasic").addClass('hidden');
+        //hide btnAnserCloze
+        $("#btnAnswerCloze").addClass('hidden');
+        //hide btnNextBasic
+        $("#btnNextBasic").addClass('hidden');
+        //hide btnNextCloze
+        $("#btnNextCloze").addClass('hidden');
+        num = 0;
+    }
+
     //generate Basic card question
     var generateQuestion = function(num) {
-         return frontCard[num];
+        return frontCard[num];
     };
 
     //generate Basic card answer
     var generateAnswer = function(num) {
-        return backCard[num];
+        if(num < 10){
+            return backCard[num];
+        }else{
+            num = 0;
+        }
     };
     
     //generate Cloze card question
@@ -71,7 +97,11 @@ $(document).ready( function() {
 
     //generate Cloze card answer
     var generateAnswerCloze = function(num) {
-        return backCard[num];
+        if(num < 10) {
+             return backCard[num];
+        }else{
+            num = 0;
+        }
     };
     
     //After pressing the start button
@@ -214,4 +244,4 @@ $(document).ready( function() {
 
 }); // end ready
 
-</script> 
+</script>
