@@ -7,4 +7,4 @@ Created the backend for a basic flashcard application. The backend essentially c
 
 - Cloze-Deleted flashcards, which present partial text ("... was the first president of the United States."), and the full text ("George Washington was the first president of the United States."). 
 
-The implementation of the front-end is completed, as well. https://pippylepew-flashcard-app.herokuapp.com/
+The implementation of the front-end is completed, as well. https://onemc-flashcard.herokuapp.com/
